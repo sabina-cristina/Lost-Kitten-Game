@@ -1,190 +1,245 @@
 #  Lost Kitten
 
-A 2D tile-based adventure game developed in Java, where the player controls **Mitzi**, a curious kitten trying to find her way back home after getting lost in the city.
+A 2D tile-based adventure game developed in Java using Object-Oriented Programming, Design Patterns, SQLite persistence, custom game engine components, and event-driven architecture.
 
-The game combines exploration, obstacle avoidance, enemy AI, database persistence, and multiple software engineering concepts such as Object-Oriented Programming, Design Patterns, and SQLite integration.
-
----
-
-##  Story
-
-Mitzi is a playful kitten living in the busy city of Riverstone. One day, she accidentally escapes from home and gets lost while exploring unfamiliar places.
-
-To return safely, she must overcome several challenges, avoid dangers, collect resources, and navigate through different environments until she finally reaches home.
+The player controls **Mitzi**, a curious kitten who gets lost while exploring the city and must overcome obstacles, avoid enemies, and navigate through multiple levels to find her way home.
 
 ---
 
-##  Features
+#  Gameplay Overview
 
-### Multi-Level Adventure
+Lost Kitten is a single-player adventure game consisting of three unique levels, each introducing new mechanics and challenges.
 
-The game contains three unique levels:
-
-#### Level 1 – Maze Challenge
+###  Level 1 – Maze Escape
 
 * Explore a maze filled with obstacles.
 * Collect fish to earn points.
-* Reach 100 points before time runs out.
-* Fog of War system limits visibility and increases difficulty.
+* Reach the required score before the timer expires.
+* Navigate using a dynamic **Fog of War** system that limits visibility.
 
-#### Level 2 – Dog Park
+###  Level 2 – Dog Park
 
-* Avoid patrolling dogs.
-* Hide inside bushes.
+* Avoid enemy dogs patrolling the map.
+* Hide inside bushes to escape detection.
 * Distract enemies using a ball.
-* Enemy detection system with visibility radius.
+* Reach the exit without losing all lives.
 
-#### Level 3 – City Crossing
+###  Level 3 – City Crossing
 
-* Cross busy roads filled with moving cars.
+* Cross roads filled with moving vehicles.
 * Avoid trains on railway tracks.
-* Checkpoint system saves progress automatically.
-* Reach home to complete the game.
+* Use checkpoints that automatically save progress.
+* Reach home safely to complete the game.
 
 ---
 
-## Artificial Intelligence
+#  Features
 
-Enemy dogs use simple AI behaviors:
-
-* Patrol predefined routes.
-* Detect the player inside a visibility range.
-* Trigger events when the player remains visible for too long.
-* React to distractions created by the player.
+* Tile-based game engine
+* Multi-level gameplay
+* Character animations
+* Enemy patrol and detection system
+* Fog of War mechanic
+* Collision detection system
+* Event-driven architecture
+* Save / Load functionality
+* SQLite database integration
+* Leaderboard system
+* Audio management
+* Custom game menus and UI
+* Custom exception handling
 
 ---
 
-## Software Architecture
+#  Software Architecture
 
-The project follows Object-Oriented Programming principles and uses multiple design patterns.
+The project follows Object-Oriented Programming principles and a modular architecture.
 
-### Design Patterns
+Main subsystems include:
 
-#### Singleton
+* Game Loop
+* Entity Management System
+* Tile Rendering Engine
+* Camera System
+* Collision System
+* Event Management System
+* Database Layer
+* Audio System
+* User Interface System
 
-Used by the AudioPlayer class to ensure a single audio manager instance throughout the game.
+---
 
-#### Factory Method
+#  Design Patterns
 
-Used for dynamic creation of enemies and NPC entities.
+## Singleton
 
-#### Observer
+Used by the AudioPlayer class to ensure a single audio manager instance throughout the entire game.
 
-Used for game events such as:
+## Factory Method
 
-* Damage
+Used for creating enemies and NPCs dynamically while keeping object creation independent from gameplay logic.
+
+## Observer
+
+Used for event management such as:
+
+* Damage events
 * Score updates
 * Life management
 * Collision notifications
 
-#### Flyweight
+## Flyweight
 
-Used for efficient tile and sprite reuse, reducing memory consumption.
+Used to efficiently reuse tiles and graphical assets, reducing memory consumption and improving performance.
 
 ---
 
-##  Database System
+#  Enemy Behaviour System
 
-The game uses SQLite through JDBC.
+Enemy dogs implement behavior logic that includes:
 
-Features:
+* Patrol routes
+* Player detection through visibility range
+* Timed detection mechanics
+* Reaction to player-generated distractions
 
-* Save / Load functionality
-* Persistent player progress
-* Checkpoint storage
-* Leaderboard system
-* Saved settings (volume, preferences)
+This system creates dynamic gameplay while encouraging strategic movement and planning.
 
-Stored information:
+---
+
+# 🌫 Fog of War
+
+The first level implements a Fog of War system that restricts player visibility.
+
+Only a circular area around the player remains visible while the rest of the map is hidden, encouraging exploration and increasing difficulty.
+
+---
+
+#  Database System
+
+The game uses SQLite through JDBC for persistent storage.
+
+Stored information includes:
 
 * Player name
 * Current level
 * Score
 * Remaining lives
-* Collected fish
-* Checkpoint position
+* Collected items
+* Checkpoint coordinates
+* User settings
+
+Database functionality:
+
+* Save game
+* Load game
+* Automatic progress detection
+* Checkpoint restoration
+* Persistent settings
+* Top 10 Leaderboard
 
 ---
 
-## Graphics & Assets
+#  Graphics & Assets
 
-Custom pixel-art assets created using:
+All pixel-art assets were created using:
 
 * GraphicsGale
 * Piskel
 
-Includes:
+The project includes:
 
-* Character animations
+* Custom player sprites
 * Enemy sprites
-* Tile maps
-* UI components
-* Game menus
+* Tile sets
+* Environmental objects
+* UI assets
+* Menus and game screens
 
 ---
 
-## ⚙ Technologies Used
+# ⚙ Technologies Used
 
 * Java
-* Object-Oriented Programming (OOP)
 * SQLite
 * JDBC
+* Object-Oriented Programming (OOP)
+* Design Patterns
 * Git & GitHub
 * IntelliJ IDEA
 
 ---
 
-##  Gameplay Controls
+# Controls
 
-| Key   | Action           |
-| ----- | ---------------- |
-| W / ↑ | Move Up          |
-| S / ↓ | Move Down        |
-| A / ← | Move Left        |
-| D / → | Move Right       |
-| ENTER | Hide / Exit Bush |
-| E     | Throw Ball       |
-| ESC   | Exit Leaderboard |
+| Key   | Action                  |
+| ----- | ----------------------- |
+| W / ↑ | Move Up                 |
+| S / ↓ | Move Down               |
+| A / ← | Move Left               |
+| D / → | Move Right              |
+| ENTER | Hide / Exit Bush        |
+| E     | Throw Ball              |
+| ESC   | Return from Leaderboard |
 
 ---
 
-## 📸 Screenshots
+#  Screenshots
 
-### Main Menu
+## Main Menu
 
 ![Main Menu](screenshots/main-menu.png)
 
-### Maze Level
+## Maze Level
 
 ![Level 1](screenshots/level1.png)
 
-### Dog Park
+## Dog Park
 
 ![Level 2](screenshots/level2.png)
 
-### City Crossing
+## City Crossing
 
 ![Level 3](screenshots/level3.png)
 
-### Leaderboard
+## Leaderboard
 
 ![Leaderboard](screenshots/leaderboard.png)
 
 ---
 
+#  UML Diagram
 
-## Academic Context
-
-This project was developed as part of the Object-Oriented Programming course and demonstrates the application of software engineering principles, game architecture, design patterns, database persistence, and event-driven programming.
+![Project Diagram](DiagramaProiect.png)
 
 ---
 
-## Future Improvements
+#  Future Improvements
 
 * Additional enemy types
-* More levels and quests
-* Advanced AI behaviors
+* More advanced enemy behaviors
+* Additional levels and quests
 * Achievement system
 * Multiple save slots
-* Improved graphics and animations
+* Improved visual effects
+* Expanded leaderboard functionality
+
+---
+
+
+#  Academic Context
+
+Developed as part of the Object-Oriented Programming course at Gheorghe Asachi Technical University of Iași.
+
+The project demonstrates practical applications of:
+
+* Object-Oriented Design
+* Software Architecture
+* Design Patterns
+* Event-Driven Programming
+* Database Integration
+* Game Development Concepts
+
+---
+
 
